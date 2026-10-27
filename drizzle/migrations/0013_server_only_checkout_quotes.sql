@@ -1,0 +1,4 @@
+DO $$ DECLARE body text; BEGIN SELECT prosrc INTO body FROM pg_proc WHERE oid='public.prepare_checkout(text,uuid,numeric,numeric)'::regprocedure; body:=replace(body,'uid uuid:=auth.uid()','uid uuid:=_user'); EXECUTE format('CREATE OR REPLACE FUNCTION public.prepare_checkout_for_user(_user uuid,_kind text,_target uuid,_usd numeric,_rate numeric) RETURNS json LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS %L',body); END $$;
+REVOKE ALL ON FUNCTION public.prepare_checkout(text,uuid,numeric,numeric) FROM public,anon,authenticated;
+REVOKE ALL ON FUNCTION public.prepare_checkout_for_user(uuid,text,uuid,numeric,numeric) FROM public,anon,authenticated;
+GRANT EXECUTE ON FUNCTION public.prepare_checkout_for_user(uuid,text,uuid,numeric,numeric) TO service_role;
