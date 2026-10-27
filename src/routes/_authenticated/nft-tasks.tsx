@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -13,8 +13,7 @@ import { MarketTabs } from "@/components/MarketTabs";
 import { supabase } from "@/integrations/supabase/client";
 import { tasksQ, submissionsQ, taskCollectionQ, taskListingsQ, taskOrdersQ, taskRpc, miningSaleReward } from "@/lib/task-nfts";
 import { profileQ, settingsQ } from "@/lib/data";
-import { usePay } from "@/lib/usePay";
-import { usd, mvt, dt } from "@/lib/format";
+import { usd, mvt } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/nft-tasks")({
   head: () => ({ meta: [{ title: "NFT tasks & earned collectibles — MiningVault Groups" }, { name: "description", content: "Complete approved tasks, collect multiple NFTs and receive mining MVG rewards on verified sales." }, { property: "og:title", content: "NFT tasks & earned collectibles — MiningVault Groups" }, { property: "og:description", content: "Admin-approved NFT tasks, collectible sales and mining rewards." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
@@ -34,7 +33,6 @@ function TaskNfts() {
   const [evidence, setEvidence] = useState<Record<string, string>>({});
   const [prices, setPrices] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState(false);
-  const { pay, busy: paying } = usePay();
   const rate = Number(settings?.task_sale_mvg_per_five_usd ?? 0);
   const sales = orders?.filter((o) => o.seller_id === me?.id && o.status === "success") ?? [];
   async function run(action: () => Promise<unknown>, message: string) {
@@ -62,8 +60,6 @@ function TaskNfts() {
         const price = Number(prices[o.id]);
         return <article key={o.id} className="overflow-hidden rounded-lg border"><TaskNftMedia nft={o.nfts} /><div className="space-y-2 p-3"><h2 className="break-words text-sm font-semibold">{o.nfts?.name}</h2><p className="break-all text-[10px] text-muted-foreground">NFT ID · {o.id}</p>{!o.nfts?.active ? <p className="text-sm text-destructive">Delisted</p> : listing ? <Button size="sm" variant="outline" className="w-full" disabled={busy} onClick={() => run(() => taskRpc(supabase.rpc("task_nft_market_action", { _action: "cancel", _id: listing.id })), "Listing cancelled")}>Cancel · {usd(listing.price_usd)}</Button> : <><Label htmlFor={`task-price-${o.id}`}>Sale price (USD)</Label><Input id={`task-price-${o.id}`} type="number" min="0.01" max="100000" step="0.01" value={prices[o.id] ?? ""} onChange={(e) => setPrices({ ...prices, [o.id]: e.target.value })} /><p className="text-xs text-muted-foreground">Sale reward: {mvt(miningSaleReward(price, rate))} · locked</p><Button size="sm" variant="gold" className="w-full" disabled={busy || me?.marketplace_blocked || !(price >= 0.01 && price <= 100000)} onClick={() => run(() => taskRpc(supabase.rpc("task_nft_market_action", { _action: "list", _id: o.id, _price: price })), "Task NFT listed")}>List for sale</Button></>}</div></article>;
       })}</div>{!collection.length && <p className="py-8 text-sm text-muted-foreground">No task NFTs collected yet.</p>}</TabsContent>
-      <TabsContent value="market" className="pt-3"><div className={GRID}>{listings.filter((l) => l.status === "open").sort((a, b) => Number(b.seller_id === me?.id) - Number(a.seller_id === me?.id)).map((l) => <article key={l.id} className="overflow-hidden rounded-lg border"><TaskNftMedia nft={l.nfts} /><div className="space-y-2 p-3"><h2 className="break-words text-sm font-semibold">{l.nfts?.name}</h2><p className="num text-primary">{usd(l.price_usd)}</p><p className="break-all text-[10px] text-muted-foreground">NFT ID · {l.instance_id}</p><Button size="sm" variant="gold" className="w-full" disabled={busy || paying || me?.marketplace_blocked || !l.nfts?.active} onClick={() => l.seller_id === me?.id ? run(() => taskRpc(supabase.rpc("task_nft_market_action", { _action: "cancel", _id: l.id })), "Listing cancelled") : pay({ kind: "task_nft", listingId: l.id })}>{l.seller_id === me?.id ? "Cancel your listing" : "Buy · Paystack"}</Button></div></article>)}</div>{!listings.some((l) => l.status === "open") && <p className="py-8 text-sm text-muted-foreground">No task NFTs listed yet.</p>}</TabsContent>
-      <TabsContent value="history" className="space-y-3 pt-3"><Button asChild size="sm" variant="outline"><Link to="/referrals">Withdraw sale proceeds</Link></Button>{orders?.filter((o) => o.user_id === me?.id || o.seller_id === me?.id).map((o) => <article key={o.id} className="flex flex-wrap items-center justify-between gap-3 border-b py-3 text-sm"><div><p>{o.seller_id === me?.id ? "Sale" : "Purchase"} · {o.status}</p><p className="text-xs text-muted-foreground">{dt(o.created_at)}</p></div><div className="text-right"><p className="num">{usd(o.amount_usd)}</p>{o.status === "success" && o.seller_id === me?.id && <p className="text-xs text-primary">+ {mvt(o.mining_mvg)} locked mining MVG</p>}</div>{o.user_id === me?.id && o.status === "pending" && <Button asChild variant="outline" size="sm"><Link to="/payment-callback" search={{ reference: o.reference }}>Check payment</Link></Button>}</article>)}{!orders?.length && <p className="py-8 text-sm text-muted-foreground">No task NFT transactions yet.</p>}</TabsContent>
     </Tabs>
   </div>;
 }
