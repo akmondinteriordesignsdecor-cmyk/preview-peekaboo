@@ -197,6 +197,13 @@
       "when": 1793081993648,
       "tag": "0027_secure_task_and_crypto_settlement",
       "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1793081996560,
+      "tag": "0028_apply_remaining",
+      "breakpoints": true
     }
   ]
 }
