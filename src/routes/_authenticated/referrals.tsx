@@ -1,8 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Copy } from "lucide-react";
+import { Copy, Megaphone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -97,7 +97,10 @@ function Referrals() {
   return (
     <div className="space-y-6">
       <div className="panel p-6 shadow-glow">
-        <h1 className="text-2xl font-semibold">Invite friends, earn <span className="text-gold">{s?.referral_commission_pct ?? 50}%</span></h1>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h1 className="text-2xl font-semibold">Invite friends, earn <span className="text-gold">{s?.referral_commission_pct ?? 50}%</span></h1>
+          <Button asChild variant="outline" size="sm"><Link to="/influencer"><Megaphone /> Influencer</Link></Button>
+        </div>
         <p className="mt-1 text-sm text-muted-foreground">You earn when someone you invited pays for a plan and starts mining.</p>
         <div className="mt-4 flex gap-2">
           <Input readOnly value={link} className="num" />
