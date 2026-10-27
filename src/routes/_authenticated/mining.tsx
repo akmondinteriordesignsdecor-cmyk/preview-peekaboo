@@ -12,7 +12,11 @@ import { FollowPanel, useFollows } from "@/components/SocialGate";
 import { plansQ, purchasesQ, sessionsQ, paymentsQ, myNftsQ } from "@/lib/data";
 import { usePay } from "@/lib/usePay";
 import { ownedMiningPurchase, upgradePrice } from "@/lib/commerce";
-import miningNftImage from "@/assets/mining-nft.jpg";
+import nftStarter from "@/assets/nft-starter.png.asset.json";
+import nftPro from "@/assets/nft-pro.png.asset.json";
+import nftTeam from "@/assets/nft-team.png.asset.json";
+
+const PLAN_IMAGES: Record<number, string> = { 1: nftStarter.url, 2: nftPro.url, 3: nftTeam.url };
 import { dt, mvt, usd } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/mining")({
@@ -91,7 +95,7 @@ function Mining() {
             const price = upgradePrice(Number(p.price_usd), Number(plan?.price_usd ?? 0));
             return (
             <div key={p.id} className="panel flex flex-col p-5">
-              <img src={miningNftImage} alt={p.name} width={768} height={768} loading="lazy" className="mb-4 aspect-square w-full max-w-40 self-center rounded-md object-contain" />
+              <img src={PLAN_IMAGES[p.sort] ?? nftTeam.url} alt={p.name} width={768} height={768} loading="lazy" className="mb-4 aspect-square w-full max-w-40 self-center rounded-md object-contain" />
               <h3 className="font-semibold">{p.name}</h3>
               <p className="num mt-2 text-3xl font-bold text-gold">{usd(price ?? p.price_usd)}</p>
               <p className="mt-1 text-sm text-muted-foreground">{p.capacity_ths} TH/s illustrative · {mvt(p.mvt_per_session)} per 12h session</p>
