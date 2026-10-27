@@ -1,0 +1,3 @@
+ALTER TABLE public.mining_sessions ADD COLUMN IF NOT EXISTS cancelled_at timestamptz;
+CREATE OR REPLACE FUNCTION public.stamp_mining_cancellation() RETURNS trigger LANGUAGE plpgsql SET search_path = public AS $$ BEGIN IF NEW.status = 'cancelled' AND OLD.status IS DISTINCT FROM 'cancelled' THEN NEW.cancelled_at := now(); END IF; RETURN NEW; END $$;
+CREATE TRIGGER stamp_mining_cancellation BEFORE UPDATE OF status ON public.mining_sessions FOR EACH ROW EXECUTE FUNCTION public.stamp_mining_cancellation();

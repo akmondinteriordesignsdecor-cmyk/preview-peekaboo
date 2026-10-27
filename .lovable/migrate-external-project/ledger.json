@@ -1,0 +1,8 @@
+[
+  {"capability":"code","source":"archive","outcome":"migrate","status":"done","next_action":null},
+  {"capability":"schema","source":"drizzle migrations","outcome":"migrate","status":"done","next_action":null},
+  {"capability":"records","source":"old Cloud database","outcome":"migrate","status":"pending","next_action":"user supplies CSV/JSON exports"},
+  {"capability":"auth identities","source":"old Cloud auth","outcome":"migrate","status":"pending","next_action":"user supplies user export"},
+  {"capability":"paystack payments + webhook","source":"PAYSTACK_SECRET_KEY","outcome":"preserve","status":"pending","next_action":"add secret, update webhook URL in Paystack dashboard after publish"},
+  {"capability":"admin role","source":"user_roles","outcome":"migrate","status":"pending","next_action":"assign admin after first signup"}
+]

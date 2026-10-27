@@ -10,33 +10,315 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as LegalRouteImport } from './routes/legal'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedActivityRouteImport } from './routes/_authenticated/activity'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedCoinMarketRouteImport } from './routes/_authenticated/coin-market'
+import { Route as AuthenticatedConvertRouteImport } from './routes/_authenticated/convert'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedGamesRouteImport } from './routes/_authenticated/games'
+import { Route as AuthenticatedMiningRouteImport } from './routes/_authenticated/mining'
+import { Route as AuthenticatedNftTasksRouteImport } from './routes/_authenticated/nft-tasks'
+import { Route as AuthenticatedNftsRouteImport } from './routes/_authenticated/nfts'
+import { Route as AuthenticatedP2pRouteImport } from './routes/_authenticated/p2p'
+import { Route as AuthenticatedPaymentCallbackRouteImport } from './routes/_authenticated/payment-callback'
+import { Route as AuthenticatedPresaleRouteImport } from './routes/_authenticated/presale'
+import { Route as AuthenticatedPurchasesRouteImport } from './routes/_authenticated/purchases'
+import { Route as AuthenticatedReferralsRouteImport } from './routes/_authenticated/referrals'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedTradeRouteImport } from './routes/_authenticated/trade'
+import { Route as AuthenticatedWalletRouteImport } from './routes/_authenticated/wallet'
+import { Route as AuthenticatedWhitelistRouteImport } from './routes/_authenticated/whitelist'
+import { Route as ApiPublicPaystackWebhookRouteImport } from './routes/api/public/paystack-webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedActivityRoute = AuthenticatedActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedCoinMarketRoute = AuthenticatedCoinMarketRouteImport.update({
+  id: '/coin-market',
+  path: '/coin-market',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedConvertRoute = AuthenticatedConvertRouteImport.update({
+  id: '/convert',
+  path: '/convert',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedGamesRoute = AuthenticatedGamesRouteImport.update({
+  id: '/games',
+  path: '/games',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedMiningRoute = AuthenticatedMiningRouteImport.update({
+  id: '/mining',
+  path: '/mining',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNftTasksRoute = AuthenticatedNftTasksRouteImport.update({
+  id: '/nft-tasks',
+  path: '/nft-tasks',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNftsRoute = AuthenticatedNftsRouteImport.update({
+  id: '/nfts',
+  path: '/nfts',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedP2pRoute = AuthenticatedP2pRouteImport.update({
+  id: '/p2p',
+  path: '/p2p',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPaymentCallbackRoute =
+  AuthenticatedPaymentCallbackRouteImport.update({
+    id: '/payment-callback',
+    path: '/payment-callback',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPresaleRoute = AuthenticatedPresaleRouteImport.update({
+  id: '/presale',
+  path: '/presale',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPurchasesRoute = AuthenticatedPurchasesRouteImport.update({
+  id: '/purchases',
+  path: '/purchases',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedReferralsRoute = AuthenticatedReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedTradeRoute = AuthenticatedTradeRouteImport.update({
+  id: '/trade',
+  path: '/trade',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedWalletRoute = AuthenticatedWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedWhitelistRoute = AuthenticatedWhitelistRouteImport.update({
+  id: '/whitelist',
+  path: '/whitelist',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const ApiPublicPaystackWebhookRoute =
+  ApiPublicPaystackWebhookRouteImport.update({
+    id: '/api/public/paystack-webhook',
+    path: '/api/public/paystack-webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/legal': typeof LegalRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/activity': typeof AuthenticatedActivityRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/convert': typeof AuthenticatedConvertRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/games': typeof AuthenticatedGamesRoute
+  '/mining': typeof AuthenticatedMiningRoute
+  '/nft-tasks': typeof AuthenticatedNftTasksRoute
+  '/nfts': typeof AuthenticatedNftsRoute
+  '/p2p': typeof AuthenticatedP2pRoute
+  '/payment-callback': typeof AuthenticatedPaymentCallbackRoute
+  '/presale': typeof AuthenticatedPresaleRoute
+  '/purchases': typeof AuthenticatedPurchasesRoute
+  '/referrals': typeof AuthenticatedReferralsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/trade': typeof AuthenticatedTradeRoute
+  '/wallet': typeof AuthenticatedWalletRoute
+  '/whitelist': typeof AuthenticatedWhitelistRoute
+  '/api/public/paystack-webhook': typeof ApiPublicPaystackWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/legal': typeof LegalRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/activity': typeof AuthenticatedActivityRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/convert': typeof AuthenticatedConvertRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/games': typeof AuthenticatedGamesRoute
+  '/mining': typeof AuthenticatedMiningRoute
+  '/nft-tasks': typeof AuthenticatedNftTasksRoute
+  '/nfts': typeof AuthenticatedNftsRoute
+  '/p2p': typeof AuthenticatedP2pRoute
+  '/payment-callback': typeof AuthenticatedPaymentCallbackRoute
+  '/presale': typeof AuthenticatedPresaleRoute
+  '/purchases': typeof AuthenticatedPurchasesRoute
+  '/referrals': typeof AuthenticatedReferralsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/trade': typeof AuthenticatedTradeRoute
+  '/wallet': typeof AuthenticatedWalletRoute
+  '/whitelist': typeof AuthenticatedWhitelistRoute
+  '/api/public/paystack-webhook': typeof ApiPublicPaystackWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/legal': typeof LegalRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/activity': typeof AuthenticatedActivityRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/_authenticated/convert': typeof AuthenticatedConvertRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/games': typeof AuthenticatedGamesRoute
+  '/_authenticated/mining': typeof AuthenticatedMiningRoute
+  '/_authenticated/nft-tasks': typeof AuthenticatedNftTasksRoute
+  '/_authenticated/nfts': typeof AuthenticatedNftsRoute
+  '/_authenticated/p2p': typeof AuthenticatedP2pRoute
+  '/_authenticated/payment-callback': typeof AuthenticatedPaymentCallbackRoute
+  '/_authenticated/presale': typeof AuthenticatedPresaleRoute
+  '/_authenticated/purchases': typeof AuthenticatedPurchasesRoute
+  '/_authenticated/referrals': typeof AuthenticatedReferralsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/trade': typeof AuthenticatedTradeRoute
+  '/_authenticated/wallet': typeof AuthenticatedWalletRoute
+  '/_authenticated/whitelist': typeof AuthenticatedWhitelistRoute
+  '/api/public/paystack-webhook': typeof ApiPublicPaystackWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/legal'
+    | '/reset-password'
+    | '/activity'
+    | '/admin'
+    | '/coin-market'
+    | '/convert'
+    | '/dashboard'
+    | '/games'
+    | '/mining'
+    | '/nft-tasks'
+    | '/nfts'
+    | '/p2p'
+    | '/payment-callback'
+    | '/presale'
+    | '/purchases'
+    | '/referrals'
+    | '/settings'
+    | '/trade'
+    | '/wallet'
+    | '/whitelist'
+    | '/api/public/paystack-webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/legal'
+    | '/reset-password'
+    | '/activity'
+    | '/admin'
+    | '/coin-market'
+    | '/convert'
+    | '/dashboard'
+    | '/games'
+    | '/mining'
+    | '/nft-tasks'
+    | '/nfts'
+    | '/p2p'
+    | '/payment-callback'
+    | '/presale'
+    | '/purchases'
+    | '/referrals'
+    | '/settings'
+    | '/trade'
+    | '/wallet'
+    | '/whitelist'
+    | '/api/public/paystack-webhook'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/legal'
+    | '/reset-password'
+    | '/_authenticated/activity'
+    | '/_authenticated/admin'
+    | '/_authenticated/coin-market'
+    | '/_authenticated/convert'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/games'
+    | '/_authenticated/mining'
+    | '/_authenticated/nft-tasks'
+    | '/_authenticated/nfts'
+    | '/_authenticated/p2p'
+    | '/_authenticated/payment-callback'
+    | '/_authenticated/presale'
+    | '/_authenticated/purchases'
+    | '/_authenticated/referrals'
+    | '/_authenticated/settings'
+    | '/_authenticated/trade'
+    | '/_authenticated/wallet'
+    | '/_authenticated/whitelist'
+    | '/api/public/paystack-webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  LegalRoute: typeof LegalRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiPublicPaystackWebhookRoute: typeof ApiPublicPaystackWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +330,223 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/activity': {
+      id: '/_authenticated/activity'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof AuthenticatedActivityRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/coin-market': {
+      id: '/_authenticated/coin-market'
+      path: '/coin-market'
+      fullPath: '/coin-market'
+      preLoaderRoute: typeof AuthenticatedCoinMarketRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/convert': {
+      id: '/_authenticated/convert'
+      path: '/convert'
+      fullPath: '/convert'
+      preLoaderRoute: typeof AuthenticatedConvertRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/games': {
+      id: '/_authenticated/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof AuthenticatedGamesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/mining': {
+      id: '/_authenticated/mining'
+      path: '/mining'
+      fullPath: '/mining'
+      preLoaderRoute: typeof AuthenticatedMiningRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/nft-tasks': {
+      id: '/_authenticated/nft-tasks'
+      path: '/nft-tasks'
+      fullPath: '/nft-tasks'
+      preLoaderRoute: typeof AuthenticatedNftTasksRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/nfts': {
+      id: '/_authenticated/nfts'
+      path: '/nfts'
+      fullPath: '/nfts'
+      preLoaderRoute: typeof AuthenticatedNftsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/p2p': {
+      id: '/_authenticated/p2p'
+      path: '/p2p'
+      fullPath: '/p2p'
+      preLoaderRoute: typeof AuthenticatedP2pRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/payment-callback': {
+      id: '/_authenticated/payment-callback'
+      path: '/payment-callback'
+      fullPath: '/payment-callback'
+      preLoaderRoute: typeof AuthenticatedPaymentCallbackRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/presale': {
+      id: '/_authenticated/presale'
+      path: '/presale'
+      fullPath: '/presale'
+      preLoaderRoute: typeof AuthenticatedPresaleRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/purchases': {
+      id: '/_authenticated/purchases'
+      path: '/purchases'
+      fullPath: '/purchases'
+      preLoaderRoute: typeof AuthenticatedPurchasesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/referrals': {
+      id: '/_authenticated/referrals'
+      path: '/referrals'
+      fullPath: '/referrals'
+      preLoaderRoute: typeof AuthenticatedReferralsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/trade': {
+      id: '/_authenticated/trade'
+      path: '/trade'
+      fullPath: '/trade'
+      preLoaderRoute: typeof AuthenticatedTradeRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/wallet': {
+      id: '/_authenticated/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof AuthenticatedWalletRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/whitelist': {
+      id: '/_authenticated/whitelist'
+      path: '/whitelist'
+      fullPath: '/whitelist'
+      preLoaderRoute: typeof AuthenticatedWhitelistRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/api/public/paystack-webhook': {
+      id: '/api/public/paystack-webhook'
+      path: '/api/public/paystack-webhook'
+      fullPath: '/api/public/paystack-webhook'
+      preLoaderRoute: typeof ApiPublicPaystackWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedActivityRoute: typeof AuthenticatedActivityRoute
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedCoinMarketRoute: typeof AuthenticatedCoinMarketRoute
+  AuthenticatedConvertRoute: typeof AuthenticatedConvertRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedGamesRoute: typeof AuthenticatedGamesRoute
+  AuthenticatedMiningRoute: typeof AuthenticatedMiningRoute
+  AuthenticatedNftTasksRoute: typeof AuthenticatedNftTasksRoute
+  AuthenticatedNftsRoute: typeof AuthenticatedNftsRoute
+  AuthenticatedP2pRoute: typeof AuthenticatedP2pRoute
+  AuthenticatedPaymentCallbackRoute: typeof AuthenticatedPaymentCallbackRoute
+  AuthenticatedPresaleRoute: typeof AuthenticatedPresaleRoute
+  AuthenticatedPurchasesRoute: typeof AuthenticatedPurchasesRoute
+  AuthenticatedReferralsRoute: typeof AuthenticatedReferralsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedTradeRoute: typeof AuthenticatedTradeRoute
+  AuthenticatedWalletRoute: typeof AuthenticatedWalletRoute
+  AuthenticatedWhitelistRoute: typeof AuthenticatedWhitelistRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedActivityRoute: AuthenticatedActivityRoute,
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedCoinMarketRoute: AuthenticatedCoinMarketRoute,
+  AuthenticatedConvertRoute: AuthenticatedConvertRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedGamesRoute: AuthenticatedGamesRoute,
+  AuthenticatedMiningRoute: AuthenticatedMiningRoute,
+  AuthenticatedNftTasksRoute: AuthenticatedNftTasksRoute,
+  AuthenticatedNftsRoute: AuthenticatedNftsRoute,
+  AuthenticatedP2pRoute: AuthenticatedP2pRoute,
+  AuthenticatedPaymentCallbackRoute: AuthenticatedPaymentCallbackRoute,
+  AuthenticatedPresaleRoute: AuthenticatedPresaleRoute,
+  AuthenticatedPurchasesRoute: AuthenticatedPurchasesRoute,
+  AuthenticatedReferralsRoute: AuthenticatedReferralsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedTradeRoute: AuthenticatedTradeRoute,
+  AuthenticatedWalletRoute: AuthenticatedWalletRoute,
+  AuthenticatedWhitelistRoute: AuthenticatedWhitelistRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AuthRoute: AuthRoute,
+  LegalRoute: LegalRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  ApiPublicPaystackWebhookRoute: ApiPublicPaystackWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

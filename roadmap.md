@@ -1,0 +1,34 @@
+# Roadmap
+- [x] Admin-created tasks, approval and multiple earned NFTs separate from mining access; signed-in create → submit → approve → two instances → list/cancel verified. Temporary test data and role removed.
+- [x] Implement Paystack task NFT checkout, verified settlement, seller USD proceeds and admin-configured locked mining MVG; 48 unit/regression tests passed.
+- [ ] BLOCKED (payment verification): Paystack secret securely saved; authenticated provider request could not be verified and no paid buyer-to-seller checkout was performed. Privileged rollback settlement test is retained but could not run under sandbox_exec permissions.
+- [ ] BLOCKED (account permission): current account has no admin role; an authorized administrator must grant access before it can create/approve real tasks. Temporary verification role was removed.
+- [x] Seven-day mining activity measures elapsed hours by local calendar day on a fixed 0–24h scale, refreshes every 15 seconds and splits overnight sessions; 7 calculation tests and routing test passed. Signed-in chart rendered; this account has no nonzero recent activity, so live nonzero growth was not browser-verified.
+- [x] Record cancellation timestamps; restored missing empty migration-history file and applied timestamp trigger. Historical cancellations without timestamps remain excluded.
+- [x] Implement WalletConnect USDT/BNB NFT payments with server-verified transfer logs, 15 confirmations, transaction replay protection and atomic issuance; actual WalletConnect QR opened in signed-in browser.
+- [ ] BLOCKED (external wallet): actual USDT transfer and resulting issuance cannot be verified without an authorized funded wallet; no real transaction was sent.
+- [x] Add confirmed sponsors below the landing hero and a compact strip below every page; verified order, desktop/mobile placement, no mobile overflow, auth footer and routing test.
+- [x] Group NFT member listings by plan, prioritize own listings, add price sorting and ID search; verified 29 tests and signed-in Starter/Pro/Team listing, ID lookup, price range and mobile layout. Temporary test listings were cancelled; original Team listing retained.
+- [x] Mining NFT plans: collectible ownership after payment, retained upgrade NFTs, transferable mining access and sale cancellation
+- [x] Verify paid issuance, resale transfer and ownership-based mining with reversible database checks; signed-in collection listing/cancellation and mining screens checked. A new Paystack card checkout was not repeated.
+- [x] Daily roulette: one free spin/day, 0.5–0.9 MVT, streak tracking
+- [x] Hourly mystery box with small coin prize
+- [x] NFT gallery: buy via Paystack, reward NFTs (7-day spin streak), admin upload screen (image + 3D)
+- [x] Verify new pages load and game rules work end to end
+- [x] Connect Paystack test key
+- [x] Fixed full-price mining purchases and upgrades: Starter $2, Pro $5, Team $10
+- [x] Per-mining-NFT ownership and mining-access timelines, including purchases, upgrades, listings and completed transfers
+- [x] Verify fixed checkout prices and private timelines with 15 unit tests, reversible purchase/transfer database tests and signed-in mining/NFT timeline screens; no new Paystack card payment was made
+- [x] Rename MVT to MVG and Games to Rewards
+- [x] NFT resale for MVG, purchased coin listings
+- [x] Admin NFT quantity, discounts, verified badge, delisting and history removal
+- [x] Verify upgrade and marketplace rules and signed-in screens
+- [x] Smaller NFT cards (3–4 per row on mobile, more on desktop)
+- [x] Dedicated coin market page for reselling purchased MVG
+- [x] Coin market as a tab inside the NFT page; view/buy only, listing stays in P2P
+- [x] Fixed NFT drop prices (no discounts on NFT checkouts; upgrades already full price)
+- [x] Own listings first on coin market (NFT market already does this)
+- [x] NFT resale price bounds: Starter $2–$100, Pro $5–$500, Team $10–$1,000 (enforced server-side)
+- [x] Rename "Starter/Pro/Team plan NFTs" group labels to "Starter/Pro/Team NFTs"
+- [x] Region detection at registration (immutable country from IP), crypto withdrawals for non-Africans, crypto access request for African accounts, admin review
+- [ ] BLOCKED (user): export of existing users/balances from old project to migrate them
