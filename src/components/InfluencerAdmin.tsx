@@ -32,7 +32,7 @@ export function InfluencerAdmin() {
     setBusy(true);
     const { error } = await p;
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(msg);
     qc.invalidateQueries({ queryKey: ["admin-influencer"] }); qc.invalidateQueries({ queryKey: ["admin-influencer-wds"] });
   }

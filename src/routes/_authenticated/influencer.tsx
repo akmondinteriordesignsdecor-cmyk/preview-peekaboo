@@ -70,7 +70,7 @@ function Influencer() {
       <div className="grid grid-cols-3 gap-3">
         <Stat label="Available" value={usd(avail)} tone="gold" />
         <Stat label="Total earned" value={usd(earned)} />
-        <Stat label="Withdrawn" value={usd(withdrawn)} hint={reserved ? `${usd(reserved)} pending` : undefined} />
+        <Stat label="Withdrawn" value={usd(withdrawn)} {...(reserved ? { hint: `${usd(reserved)} pending` } : {})} />
       </div>
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="panel space-y-3 p-5">
