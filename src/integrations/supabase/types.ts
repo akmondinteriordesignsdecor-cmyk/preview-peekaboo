@@ -139,6 +139,99 @@ export type Database = {
         }
         Relationships: []
       }
+      influencer_earnings: {
+        Row: {
+          amount_usd: number
+          created_at: string
+          id: string
+          note: string | null
+          user_id: string
+        }
+        Insert: {
+          amount_usd: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          user_id: string
+        }
+        Update: {
+          amount_usd?: number
+          created_at?: string
+          id?: string
+          note?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      influencer_submissions: {
+        Row: {
+          admin_note: string | null
+          award_usd: number | null
+          channel_links: string
+          created_at: string
+          id: string
+          message: string
+          reviewed_at: string | null
+          screenshots: string[]
+          status: string
+          user_id: string
+          views: number
+        }
+        Insert: {
+          admin_note?: string | null
+          award_usd?: number | null
+          channel_links: string
+          created_at?: string
+          id?: string
+          message?: string
+          reviewed_at?: string | null
+          screenshots?: string[]
+          status?: string
+          user_id?: string
+          views?: number
+        }
+        Update: {
+          admin_note?: string | null
+          award_usd?: number | null
+          channel_links?: string
+          created_at?: string
+          id?: string
+          message?: string
+          reviewed_at?: string | null
+          screenshots?: string[]
+          status?: string
+          user_id?: string
+          views?: number
+        }
+        Relationships: []
+      }
+      influencer_withdrawals: {
+        Row: {
+          amount_usd: number
+          created_at: string
+          id: string
+          payout_details: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          amount_usd: number
+          created_at?: string
+          id?: string
+          payout_details: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          amount_usd?: number
+          created_at?: string
+          id?: string
+          payout_details?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       ledger_entries: {
         Row: {
           account: string
@@ -1201,6 +1294,10 @@ export type Database = {
         }
         Returns: string
       }
+      admin_set_influencer_withdrawal: {
+        Args: { _id: string; _status: string }
+        Returns: undefined
+      }
       admin_set_task_reward: { Args: { _rate: number }; Returns: undefined }
       admin_set_withdrawal: {
         Args: { _id: string; _note: string; _status: string }
@@ -1236,6 +1333,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      influencer_balance: { Args: never; Returns: Json }
       join_whitelist: { Args: { _wallet: string }; Returns: undefined }
       list_purchased_coins: {
         Args: { _amount: number; _price: number }
@@ -1284,6 +1382,10 @@ export type Database = {
         Returns: Json
       }
       referral_stats: { Args: never; Returns: Json }
+      request_influencer_withdrawal: {
+        Args: { _amount: number; _details: string }
+        Returns: string
+      }
       request_withdrawal: {
         Args: {
           _acct: string
@@ -1296,6 +1398,10 @@ export type Database = {
       }
       review_crypto_request: {
         Args: { _approve: boolean; _user: string }
+        Returns: undefined
+      }
+      review_influencer: {
+        Args: { _approve: boolean; _award: number; _id: string; _note: string }
         Returns: undefined
       }
       review_nft_task: {
