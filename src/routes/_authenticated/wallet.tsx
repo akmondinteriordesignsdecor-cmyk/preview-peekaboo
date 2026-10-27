@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Handshake } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Empty, Stat, StatusBadge } from "@/components/Brand";
 import { balancesQ, ledgerQ } from "@/lib/data";
@@ -16,7 +18,10 @@ function Wallet() {
   const rows = ledger?.filter((l) => l.account === "mvt") ?? [];
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">MVG Wallet</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-semibold">MVG Wallet</h1>
+        <Button asChild variant="outline" size="sm"><Link to="/collaborations"><Handshake /> Collaborations</Link></Button>
+      </div>
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Stat label="Total mined MVG" value={mvt(Number(b?.mvt_confirmed ?? 0) + Number(b?.mvt_pending ?? 0))} tone="gold" hint={usd((Number(b?.mvt_confirmed ?? 0) + Number(b?.mvt_pending ?? 0)) / rate)} />
         <Stat label="Available" value={mvt(b?.mvt_confirmed)} />

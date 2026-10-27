@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Architecture rules
+- Collaboration opportunities live in a dedicated authenticated page linked from the wallet and use the shared social contact destination; why: provides a partnership entry point without implying automatic external asset listings.
 - Task collectibles use separate per-instance ownership, admin-reviewed submissions and service-only verified settlement; sale USD credits use the existing withdrawable referral account and mining bonuses use pending mvt ledger entries. Why: supports multiple collectibles without granting mining access or making locked bonuses spendable.
 - Crypto NFT checkout reserves a normal NFT payment quote and binds a unique on-chain transaction to the signed-in buyer and quoted wallet; verification checks BNB USDT transfer logs and confirmations before atomic fulfillment. Why: prevents replay, spoofed payments and double issuance.
 - Mining activity is computed in a pure elapsed-time module and displayed on a fixed 0–24-hour scale, merging overlapping sessions per local calendar day. Why: compares actual mining time consistently instead of counting starts; unknown historical cancellations are excluded rather than guessed.
