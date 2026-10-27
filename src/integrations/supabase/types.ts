@@ -14,16 +14,456 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ledger_entries: {
+        Row: {
+          account: string
+          amount: number
+          created_at: string
+          details: Json
+          id: string
+          kind: string
+          reference: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          account: string
+          amount: number
+          created_at?: string
+          details?: Json
+          id?: string
+          kind: string
+          reference: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          account?: string
+          amount?: number
+          created_at?: string
+          details?: Json
+          id?: string
+          kind?: string
+          reference?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      login_events: {
+        Row: {
+          created_at: string
+          id: string
+          ip: string | null
+          method: string | null
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ip?: string | null
+          method?: string | null
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ip?: string | null
+          method?: string | null
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mining_sessions: {
+        Row: {
+          claimed_at: string | null
+          ends_at: string
+          id: string
+          purchase_id: string
+          reward_mvt: number | null
+          started_at: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          claimed_at?: string | null
+          ends_at: string
+          id?: string
+          purchase_id: string
+          reward_mvt?: number | null
+          started_at?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          claimed_at?: string | null
+          ends_at?: string
+          id?: string
+          purchase_id?: string
+          reward_mvt?: number | null
+          started_at?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mining_sessions_purchase_id_fkey"
+            columns: ["purchase_id"]
+            isOneToOne: false
+            referencedRelation: "plan_purchases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          read: boolean
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          read?: boolean
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          read?: boolean
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount_ngn_kobo: number
+          amount_usd: number
+          created_at: string
+          id: string
+          kind: string
+          mvt_amount: number | null
+          plan_id: string | null
+          reference: string
+          status: string
+          user_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          amount_ngn_kobo: number
+          amount_usd: number
+          created_at?: string
+          id?: string
+          kind: string
+          mvt_amount?: number | null
+          plan_id?: string | null
+          reference: string
+          status?: string
+          user_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          amount_ngn_kobo?: number
+          amount_usd?: number
+          created_at?: string
+          id?: string
+          kind?: string
+          mvt_amount?: number | null
+          plan_id?: string | null
+          reference?: string
+          status?: string
+          user_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plan_purchases: {
+        Row: {
+          created_at: string
+          id: string
+          payment_id: string
+          plan_id: string
+          referral_paid: boolean
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          payment_id: string
+          plan_id: string
+          referral_paid?: boolean
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          payment_id?: string
+          plan_id?: string
+          referral_paid?: boolean
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plan_purchases_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: true
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plan_purchases_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plans: {
+        Row: {
+          active: boolean
+          capacity_ths: number
+          id: string
+          mvt_per_session: number
+          name: string
+          price_usd: number
+          sort: number
+        }
+        Insert: {
+          active?: boolean
+          capacity_ths: number
+          id?: string
+          mvt_per_session?: number
+          name: string
+          price_usd: number
+          sort?: number
+        }
+        Update: {
+          active?: boolean
+          capacity_ths?: number
+          id?: string
+          mvt_per_session?: number
+          name?: string
+          price_usd?: number
+          sort?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string | null
+          id: string
+          referral_code: string
+          referred_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id: string
+          referral_code: string
+          referred_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          id?: string
+          referral_code?: string
+          referred_by?: string | null
+        }
+        Relationships: []
+      }
+      settings: {
+        Row: {
+          id: number
+          launch_date: string
+          launch_label: string
+          min_withdrawal_usd: number
+          mvt_per_usd: number
+          referral_commission_pct: number
+          session_hours: number
+          usd_to_ngn: number
+        }
+        Insert: {
+          id?: number
+          launch_date?: string
+          launch_label?: string
+          min_withdrawal_usd?: number
+          mvt_per_usd?: number
+          referral_commission_pct?: number
+          session_hours?: number
+          usd_to_ngn?: number
+        }
+        Update: {
+          id?: number
+          launch_date?: string
+          launch_label?: string
+          min_withdrawal_usd?: number
+          mvt_per_usd?: number
+          referral_commission_pct?: number
+          session_hours?: number
+          usd_to_ngn?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      whitelist: {
+        Row: {
+          created_at: string
+          user_id: string
+          wallet_address: string | null
+        }
+        Insert: {
+          created_at?: string
+          user_id: string
+          wallet_address?: string | null
+        }
+        Update: {
+          created_at?: string
+          user_id?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      withdrawals: {
+        Row: {
+          account_name: string | null
+          account_number: string | null
+          admin_note: string | null
+          amount_ngn_kobo: number | null
+          amount_usd: number
+          bank_code: string | null
+          bank_name: string | null
+          created_at: string
+          id: string
+          method: string
+          reference: string
+          status: string
+          transfer_code: string | null
+          transfer_ref: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          account_name?: string | null
+          account_number?: string | null
+          admin_note?: string | null
+          amount_ngn_kobo?: number | null
+          amount_usd: number
+          bank_code?: string | null
+          bank_name?: string | null
+          created_at?: string
+          id?: string
+          method: string
+          reference: string
+          status?: string
+          transfer_code?: string | null
+          transfer_ref?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          account_name?: string | null
+          account_number?: string | null
+          admin_note?: string | null
+          amount_ngn_kobo?: number | null
+          amount_usd?: number
+          bank_code?: string | null
+          bank_name?: string | null
+          created_at?: string
+          id?: string
+          method?: string
+          reference?: string
+          status?: string
+          transfer_code?: string | null
+          transfer_ref?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_set_withdrawal: {
+        Args: { _id: string; _note: string; _status: string }
+        Returns: undefined
+      }
+      cancel_withdrawal: { Args: { _id: string }; Returns: undefined }
+      claim_mining: { Args: { _session: string }; Returns: Json }
+      fulfill_payment: {
+        Args: { _paid_kobo: number; _reference: string }
+        Returns: string
+      }
+      get_balances: { Args: never; Returns: Json }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      join_whitelist: { Args: { _wallet: string }; Returns: undefined }
+      platform_stats: { Args: never; Returns: Json }
+      referral_stats: { Args: never; Returns: Json }
+      request_withdrawal: {
+        Args: {
+          _acct: string
+          _amount: number
+          _bank: string
+          _method: string
+          _name: string
+        }
+        Returns: Json
+      }
+      start_mining: { Args: never; Returns: Json }
+      system_set_withdrawal: {
+        Args: { _id: string; _note: string; _status: string }
+        Returns: undefined
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +590,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
