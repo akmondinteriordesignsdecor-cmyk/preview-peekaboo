@@ -1,5 +1,0 @@
-DO $$ DECLARE body text; BEGIN
-SELECT prosrc INTO body FROM pg_proc WHERE oid='public.fulfill_payment(text,bigint)'::regprocedure;
-body:=replace(body,'SELECT n.mining_plan_id INTO old_plan FROM public.nft_ownerships o JOIN public.nfts n ON n.id=o.nft_id JOIN public.plans x ON x.id=n.mining_plan_id WHERE o.user_id=p.user_id AND o.plan_purchase_id IS NOT NULL ORDER BY x.price_usd DESC,o.created_at DESC LIMIT 1;','SELECT mn.mining_plan_id INTO old_plan FROM public.nft_ownerships own JOIN public.nfts mn ON mn.id=own.nft_id JOIN public.plans x ON x.id=mn.mining_plan_id WHERE own.user_id=p.user_id AND own.plan_purchase_id IS NOT NULL ORDER BY x.price_usd DESC,own.created_at DESC LIMIT 1;');
-EXECUTE format('CREATE OR REPLACE FUNCTION public.fulfill_payment(_reference text,_paid_kobo bigint) RETURNS text LANGUAGE plpgsql SECURITY DEFINER SET search_path=public AS %L',body);
-END $$;
