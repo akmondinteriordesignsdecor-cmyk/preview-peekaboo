@@ -17,6 +17,7 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedActivityRouteImport } from './routes/_authenticated/activity'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedCoinMarketRouteImport } from './routes/_authenticated/coin-market'
+import { Route as AuthenticatedCollaborationsRouteImport } from './routes/_authenticated/collaborations'
 import { Route as AuthenticatedConvertRouteImport } from './routes/_authenticated/convert'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedGamesRouteImport } from './routes/_authenticated/games'
@@ -74,6 +75,12 @@ const AuthenticatedCoinMarketRoute = AuthenticatedCoinMarketRouteImport.update({
   path: '/coin-market',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedCollaborationsRoute =
+  AuthenticatedCollaborationsRouteImport.update({
+    id: '/collaborations',
+    path: '/collaborations',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedConvertRoute = AuthenticatedConvertRouteImport.update({
   id: '/convert',
   path: '/convert',
@@ -170,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/activity': typeof AuthenticatedActivityRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/collaborations': typeof AuthenticatedCollaborationsRoute
   '/convert': typeof AuthenticatedConvertRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/games': typeof AuthenticatedGamesRoute
@@ -196,6 +204,7 @@ export interface FileRoutesByTo {
   '/activity': typeof AuthenticatedActivityRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/collaborations': typeof AuthenticatedCollaborationsRoute
   '/convert': typeof AuthenticatedConvertRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/games': typeof AuthenticatedGamesRoute
@@ -224,6 +233,7 @@ export interface FileRoutesById {
   '/_authenticated/activity': typeof AuthenticatedActivityRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/coin-market': typeof AuthenticatedCoinMarketRoute
+  '/_authenticated/collaborations': typeof AuthenticatedCollaborationsRoute
   '/_authenticated/convert': typeof AuthenticatedConvertRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/games': typeof AuthenticatedGamesRoute
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/activity'
     | '/admin'
     | '/coin-market'
+    | '/collaborations'
     | '/convert'
     | '/dashboard'
     | '/games'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/activity'
     | '/admin'
     | '/coin-market'
+    | '/collaborations'
     | '/convert'
     | '/dashboard'
     | '/games'
@@ -305,6 +317,7 @@ export interface FileRouteTypes {
     | '/_authenticated/activity'
     | '/_authenticated/admin'
     | '/_authenticated/coin-market'
+    | '/_authenticated/collaborations'
     | '/_authenticated/convert'
     | '/_authenticated/dashboard'
     | '/_authenticated/games'
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       path: '/coin-market'
       fullPath: '/coin-market'
       preLoaderRoute: typeof AuthenticatedCoinMarketRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/collaborations': {
+      id: '/_authenticated/collaborations'
+      path: '/collaborations'
+      fullPath: '/collaborations'
+      preLoaderRoute: typeof AuthenticatedCollaborationsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/convert': {
@@ -517,6 +537,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedActivityRoute: typeof AuthenticatedActivityRoute
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedCoinMarketRoute: typeof AuthenticatedCoinMarketRoute
+  AuthenticatedCollaborationsRoute: typeof AuthenticatedCollaborationsRoute
   AuthenticatedConvertRoute: typeof AuthenticatedConvertRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedGamesRoute: typeof AuthenticatedGamesRoute
@@ -539,6 +560,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedActivityRoute: AuthenticatedActivityRoute,
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedCoinMarketRoute: AuthenticatedCoinMarketRoute,
+  AuthenticatedCollaborationsRoute: AuthenticatedCollaborationsRoute,
   AuthenticatedConvertRoute: AuthenticatedConvertRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedGamesRoute: AuthenticatedGamesRoute,
