@@ -20,6 +20,7 @@ import { nftListingsQ, p2pListingsQ, settingsQ } from "@/lib/data";
 import { createNft, updateNft } from "@/lib/nft-admin.functions";
 import { NftTaskAdmin } from "@/components/NftTaskAdmin";
 import { InfluencerAdmin } from "@/components/InfluencerAdmin";
+import { CollaborationRequests } from "@/components/CollaborationRequests";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [{ title: "Admin — MiningVault Groups" }, { name: "description", content: "Review MiningVault Groups withdrawals." }, { property: "og:title", content: "Admin — MiningVault Groups" }, { property: "og:description", content: "Admin panel." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }),
@@ -112,6 +113,7 @@ function Admin() {
       <NftManager />
       <NftTaskAdmin />
       <InfluencerAdmin />
+      <CollaborationRequests admin />
       <CryptoRequests />
       <MarketplaceAdmin />
     </div>
