@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Add wallet Collaborations button and partnership opportunities page; verify navigation.
+- [x] Add wallet Collaborations button and partnership opportunities page; verified signed-in navigation, four opportunities, Telegram contact and mobile layout.
 - [x] Admin-created tasks, approval and multiple earned NFTs separate from mining access; signed-in create → submit → approve → two instances → list/cancel verified. Temporary test data and role removed.
 - [x] Implement Paystack task NFT checkout, verified settlement, seller USD proceeds and admin-configured locked mining MVG; 48 unit/regression tests passed.
 - [ ] BLOCKED (payment verification): Paystack secret securely saved; authenticated provider request could not be verified and no paid buyer-to-seller checkout was performed. Privileged rollback settlement test is retained but could not run under sandbox_exec permissions.
