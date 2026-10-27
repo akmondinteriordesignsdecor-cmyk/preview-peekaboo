@@ -47,6 +47,71 @@ export type Database = {
         }
         Relationships: []
       }
+      collaboration_messages: {
+        Row: {
+          author_id: string
+          created_at: string
+          id: string
+          message: string
+          request_id: string
+        }
+        Insert: {
+          author_id?: string
+          created_at?: string
+          id?: string
+          message: string
+          request_id: string
+        }
+        Update: {
+          author_id?: string
+          created_at?: string
+          id?: string
+          message?: string
+          request_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collaboration_messages_request_id_fkey"
+            columns: ["request_id"]
+            isOneToOne: false
+            referencedRelation: "collaboration_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collaboration_requests: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          phone: string
+          platform_name: string
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          phone?: string
+          platform_name: string
+          topic?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          phone?: string
+          platform_name?: string
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       crypto_access_requests: {
         Row: {
           created_at: string

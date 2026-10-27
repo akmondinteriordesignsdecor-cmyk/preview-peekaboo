@@ -1,4 +1,6 @@
 # Roadmap
+- [ ] Replace direct Telegram collaboration link with Telegram, X and private admin request choices; add admin contact/reply view and verify privacy.
+- [ ] Add distinct coin partnership and shareholding opportunities. BLOCKED (user): defined share eligibility, rights and terms have not been provided; do not grant shares automatically.
 - [x] Add wallet Collaborations button and partnership opportunities page; verified signed-in navigation, four opportunities, Telegram contact and mobile layout.
 - [x] Admin-created tasks, approval and multiple earned NFTs separate from mining access; signed-in create → submit → approve → two instances → list/cancel verified. Temporary test data and role removed.
 - [x] Implement Paystack task NFT checkout, verified settlement, seller USD proceeds and admin-configured locked mining MVG; 48 unit/regression tests passed.
