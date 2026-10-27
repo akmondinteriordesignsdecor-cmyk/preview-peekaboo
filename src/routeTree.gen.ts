@@ -20,6 +20,7 @@ import { Route as AuthenticatedCoinMarketRouteImport } from './routes/_authentic
 import { Route as AuthenticatedConvertRouteImport } from './routes/_authenticated/convert'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedGamesRouteImport } from './routes/_authenticated/games'
+import { Route as AuthenticatedInfluencerRouteImport } from './routes/_authenticated/influencer'
 import { Route as AuthenticatedMiningRouteImport } from './routes/_authenticated/mining'
 import { Route as AuthenticatedNftTasksRouteImport } from './routes/_authenticated/nft-tasks'
 import { Route as AuthenticatedNftsRouteImport } from './routes/_authenticated/nfts'
@@ -86,6 +87,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
 const AuthenticatedGamesRoute = AuthenticatedGamesRouteImport.update({
   id: '/games',
   path: '/games',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedInfluencerRoute = AuthenticatedInfluencerRouteImport.update({
+  id: '/influencer',
+  path: '/influencer',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedMiningRoute = AuthenticatedMiningRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/convert': typeof AuthenticatedConvertRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/games': typeof AuthenticatedGamesRoute
+  '/influencer': typeof AuthenticatedInfluencerRoute
   '/mining': typeof AuthenticatedMiningRoute
   '/nft-tasks': typeof AuthenticatedNftTasksRoute
   '/nfts': typeof AuthenticatedNftsRoute
@@ -192,6 +199,7 @@ export interface FileRoutesByTo {
   '/convert': typeof AuthenticatedConvertRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/games': typeof AuthenticatedGamesRoute
+  '/influencer': typeof AuthenticatedInfluencerRoute
   '/mining': typeof AuthenticatedMiningRoute
   '/nft-tasks': typeof AuthenticatedNftTasksRoute
   '/nfts': typeof AuthenticatedNftsRoute
@@ -219,6 +227,7 @@ export interface FileRoutesById {
   '/_authenticated/convert': typeof AuthenticatedConvertRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/games': typeof AuthenticatedGamesRoute
+  '/_authenticated/influencer': typeof AuthenticatedInfluencerRoute
   '/_authenticated/mining': typeof AuthenticatedMiningRoute
   '/_authenticated/nft-tasks': typeof AuthenticatedNftTasksRoute
   '/_authenticated/nfts': typeof AuthenticatedNftsRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/convert'
     | '/dashboard'
     | '/games'
+    | '/influencer'
     | '/mining'
     | '/nft-tasks'
     | '/nfts'
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/convert'
     | '/dashboard'
     | '/games'
+    | '/influencer'
     | '/mining'
     | '/nft-tasks'
     | '/nfts'
@@ -297,6 +308,7 @@ export interface FileRouteTypes {
     | '/_authenticated/convert'
     | '/_authenticated/dashboard'
     | '/_authenticated/games'
+    | '/_authenticated/influencer'
     | '/_authenticated/mining'
     | '/_authenticated/nft-tasks'
     | '/_authenticated/nfts'
@@ -400,6 +412,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedGamesRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/influencer': {
+      id: '/_authenticated/influencer'
+      path: '/influencer'
+      fullPath: '/influencer'
+      preLoaderRoute: typeof AuthenticatedInfluencerRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/mining': {
       id: '/_authenticated/mining'
       path: '/mining'
@@ -501,6 +520,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedConvertRoute: typeof AuthenticatedConvertRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedGamesRoute: typeof AuthenticatedGamesRoute
+  AuthenticatedInfluencerRoute: typeof AuthenticatedInfluencerRoute
   AuthenticatedMiningRoute: typeof AuthenticatedMiningRoute
   AuthenticatedNftTasksRoute: typeof AuthenticatedNftTasksRoute
   AuthenticatedNftsRoute: typeof AuthenticatedNftsRoute
@@ -522,6 +542,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedConvertRoute: AuthenticatedConvertRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedGamesRoute: AuthenticatedGamesRoute,
+  AuthenticatedInfluencerRoute: AuthenticatedInfluencerRoute,
   AuthenticatedMiningRoute: AuthenticatedMiningRoute,
   AuthenticatedNftTasksRoute: AuthenticatedNftTasksRoute,
   AuthenticatedNftsRoute: AuthenticatedNftsRoute,
