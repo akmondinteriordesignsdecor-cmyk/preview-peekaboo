@@ -49,7 +49,7 @@ function TaskNfts() {
       <div><p className="text-xs text-muted-foreground">Locked mining MVG earned</p><p className="num mt-1 text-xl">{mvt(sales.reduce((v, o) => v + Number(o.mining_mvg), 0))}</p></div>
     </div>
     {me?.marketplace_blocked && <p className="text-sm text-destructive">Your marketplace access is suspended.</p>}
-    <Tabs defaultValue="tasks"><TabsList className="flex h-auto flex-wrap"><TabsTrigger value="tasks">Tasks</TabsTrigger><TabsTrigger value="collection">My task NFTs</TabsTrigger><TabsTrigger value="market">Task NFT market</TabsTrigger><TabsTrigger value="history">Sales & purchases</TabsTrigger></TabsList>
+    <Tabs defaultValue="tasks"><TabsList className="flex h-auto flex-wrap"><TabsTrigger value="tasks">Tasks</TabsTrigger><TabsTrigger value="collection">My task NFTs</TabsTrigger></TabsList>
       <TabsContent value="tasks" className="space-y-4 pt-3">{tasks.filter((t) => t.active || submissions?.some((s) => s.task_id === t.id && s.user_id === me?.id)).map((t) => {
         const submitted = submissions?.find((s) => s.task_id === t.id && s.user_id === me?.id);
         return <article key={t.id} className="space-y-3 rounded-lg border p-4"><div className="flex flex-wrap items-start justify-between gap-2"><h2 className="font-semibold">{t.title}</h2><span className="text-sm text-primary">{t.award_quantity} × {t.nfts?.name}</span></div><p className="whitespace-pre-wrap break-words text-sm text-muted-foreground">{t.description}</p>
