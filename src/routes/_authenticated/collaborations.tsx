@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CollaborationRequests } from "@/components/CollaborationRequests";
 import { supabase } from "@/integrations/supabase/client";
 import { SOCIALS } from "@/lib/social";
-import miningNft from "@/assets/mining-nft.jpg";
+import nftTeam from "@/assets/nft-team.png.asset.json";
 
 export const Route = createFileRoute("/_authenticated/collaborations")({
   head: () => ({
@@ -69,7 +69,7 @@ function Collaborations() {
         <div className="grid gap-4 sm:grid-cols-2">
           {opportunities.map(({ title, icon: Icon, tag, text }, index) => (
             <article key={title} className="relative overflow-hidden rounded-lg border bg-card p-5">
-              {index === 0 && <img src={miningNft} alt="MiningVault NFT collectible" className="absolute right-5 top-5 size-16 rounded-md object-cover" />}
+              {index === 0 && <img src={nftTeam.url} alt="MiningVault Team NFT collectible" className="absolute right-5 top-5 size-16 rounded-md object-cover" />}
               <Icon className="mb-4 size-6 text-primary" />
               <p className="mb-2 text-xs font-medium text-muted-foreground">{tag}</p>
               <h3 className="mb-2 text-lg font-semibold">{title}</h3>
