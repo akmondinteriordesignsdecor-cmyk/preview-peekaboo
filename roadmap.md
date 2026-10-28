@@ -1,5 +1,6 @@
 # Roadmap
-- [ ] Replace direct Telegram collaboration link with Telegram, X and private admin request choices; add admin contact/reply view and verify privacy.
+- [x] Replace direct Telegram collaboration link with Telegram, X and private admin request choices; signed-in submission, reply persistence, mobile dialog and forged-author rejection verified; permission tests passed, temporary requests removed.
+- [ ] BLOCKED (account permission): admin collaboration inbox/reply controls implemented but not browser-verified because the requesting account has no admin role.
 - [ ] Add distinct coin partnership and shareholding opportunities. BLOCKED (user): defined share eligibility, rights and terms have not been provided; do not grant shares automatically.
 - [x] Add wallet Collaborations button and partnership opportunities page; verified signed-in navigation, four opportunities, Telegram contact and mobile layout.
 - [x] Admin-created tasks, approval and multiple earned NFTs separate from mining access; signed-in create → submit → approve → two instances → list/cancel verified. Temporary test data and role removed.
