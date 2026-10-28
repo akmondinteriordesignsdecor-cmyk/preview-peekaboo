@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, Coins, Handshake, Image, Megaphone, Users, MessageCircle, Send, Gem, Briefcase } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Bitcoin, Coins, Handshake, Image, Megaphone, Users, MessageCircle, Send, Gem, Briefcase } from "lucide-react";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/_authenticated/collaborations")({
 
 const opportunities = [
   { title: "NFT collaborations", icon: Image, tag: "COLLECTIONS", text: "Bring your NFT collection to MiningVault Groups. Discuss showcasing your NFTs and offering them for sale to our community." },
-  { title: "Cryptocurrency sales", icon: Coins, tag: "COINS & TOKENS", text: "Partner with us to introduce your cryptocurrency and explore selling your coins on our website." },
+  { title: "Cryptocurrency sales", icon: Bitcoin, tag: "COINS & TOKENS", text: "Partner with us to introduce your cryptocurrency and explore selling your coins on our website." },
   { title: "Grow your X community", icon: Megaphone, tag: "SOCIAL REACH", text: "Promote your platform’s X account and connect with people interested in cryptocurrency, mining and NFTs." },
   { title: "Introduce your platform", icon: Users, tag: "COMMUNITY PARTNERSHIPS", text: "Introduce our users to your cryptocurrency platform through awareness campaigns, community collaborations and joint promotions." },
   { title: "Buy our coin & become a partner", icon: Briefcase, tag: "COIN PARTNERSHIP", text: "Interested in buying MVG in larger quantities, such as 3,000, 5,000 or 10,000 coins? Contact the admin about a partnership. Partnership terms must be agreed separately from your coin purchase." },
