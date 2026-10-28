@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, Coins, Handshake, Image, Megaphone, Users, MessageCircle, Send, Gem, Briefcase } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Bitcoin, Coins, Handshake, Image, Megaphone, Users, MessageCircle, Send, Gem, Briefcase } from "lucide-react";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
