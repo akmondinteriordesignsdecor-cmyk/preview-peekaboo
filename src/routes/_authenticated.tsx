@@ -28,27 +28,17 @@ const NAV = [
 ] as const;
 
 function Layout() {
-  const { session, loading } = useAuth();
-  const nav = useNavigate();
+  const { session } = useAuth();
   const qc = useQueryClient();
-  useEffect(() => {
-    if (!loading && !session) { nav({ to: "/auth" }); return; }
-    if (session) supabase.auth.mfa.getAuthenticatorAssuranceLevel().then(({ data }) => {
-      if (data?.nextLevel === "aal2" && data.currentLevel !== "aal2") nav({ to: "/auth", search: { mode: "mfa" } });
-    });
-  }, [loading, session, nav]);
   const { data: roles } = useQuery({ ...rolesQ, enabled: !!session });
   const { data: notes } = useQuery({ ...notificationsQ, enabled: !!session });
   const isAdmin = roles?.some((r) => r.role === "admin");
   const unread = notes?.filter((n) => !n.read).length ?? 0;
 
-  if (loading || !session) return <div className="grid min-h-screen place-items-center text-muted-foreground"><Gauge className="animate-spin" /></div>;
-
   async function markRead() {
     await supabase.from("notifications").update({ read: true }).eq("read", false);
     qc.invalidateQueries({ queryKey: ["notifications"] });
   }
-  async function logout() { await supabase.auth.signOut(); qc.clear(); nav({ to: "/auth" }); }
 
   const links = [...NAV, ...(isAdmin ? [{ to: "/admin", label: "Admin", icon: Shield } as const] : [])];
   return (
