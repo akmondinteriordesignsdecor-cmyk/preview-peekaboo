@@ -1,7 +1,6 @@
-import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Banknote, Bell, Dices, Gauge, Gem, History, LayoutDashboard, LogOut, Pickaxe, Settings, Shield, Users, Wallet } from "lucide-react";
+import { Banknote, Bell, Dices, Gem, History, LayoutDashboard, Pickaxe, Settings, Shield, Users, Wallet } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Logo } from "@/components/Brand";
@@ -52,7 +51,6 @@ function Layout() {
             </Link>
           ))}
         </nav>
-        <Button variant="ghost" onClick={logout} className="justify-start"><LogOut /> Log out</Button>
         <p className="mt-3 text-xs text-muted-foreground">Created by Spidervarse</p>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
@@ -75,7 +73,6 @@ function Layout() {
                 )) : <p className="text-sm text-muted-foreground">No notifications yet</p>}
               </PopoverContent>
             </Popover>
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={logout} aria-label="Log out"><LogOut /></Button>
           </div>
         </header>
         <nav className="flex gap-1 overflow-x-auto border-b px-2 py-2 md:hidden">
